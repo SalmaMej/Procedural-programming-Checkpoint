@@ -1,0 +1,46 @@
+PROCEDURE read_vector(VAR vector) : ARRAY_OF INTEGER[3];
+VAR
+    x, y, z : INTEGER;
+BEGIN
+    Write('Enter x value');
+    Read(x);
+    Write('Enter y value');
+    Read(y);
+    Write('Enter z value')
+    Read(z);
+    vector := vector.push(x, y, z);
+    Write(vector);
+END
+
+ALGORITHM enterVectors
+VAR
+    V1, V2 : ARRAY_OF INTEGER[3];
+BEGIN
+    read_vector(V1);
+    read_vector(V2);
+END
+
+FUNCTION dot_product_function(VAR V1, V2 : ARRAY_OF INTEGER[3]) : INTEGER
+VAR
+    dot : INTEGER;
+BEGIN
+    dot := V1[0] * V2[0] + V1[1] * V2[1] + V1[3] * V2[3];
+    RETURN dot;
+END
+
+ALGORITHM orthogonal_vectors
+VAR
+    arrVectors : ARRAY_OF INTEGER[50];
+    vector : ARRAY_OF INTEGER[3];
+    i, j : INTEGER;
+BEGIN
+    FOR i FROM 0 TO arrVectors.length-1 DO
+        FOR j FROM 0 TO 1 DO
+            IF ( (dot_product_function(vectors[j], vectors[j+1]) = 0)) THEN
+                Write('Pair number: ' + i + ' of vectors are orthogonal.');
+            ELSE
+                Write('Pair number: ' + i + ' of vectors are NOT orthogonal.');
+            END_IF
+        END_FOR
+    END_FOR
+END
